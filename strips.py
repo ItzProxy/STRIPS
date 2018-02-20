@@ -45,7 +45,20 @@ class Actions:
 
         def __str__(self):
             return "{0}({1})\nPre: {2}\nPost: {3}".format(self.name, join_list(self.params), join_list(self.preconditions), join_list(self.postconditions))
-            
+
+class GroundedAction:
+    def __init__(self, action, literals, preconditions, postconditions):
+        self.action = action
+        self.literals = literals
+        self.preconditions = preconditions
+        self.postconditions = postconditions
+        self.complete_post_condition = list(postconditions)
+        for(p in pre):
+            if(not weak_contains(self.complete_post_condition, p)):
+                self.complete_post_condition.append(p)
+        
+    def __str__(self):
+        return "{0}({1})\nPre: {2}\nPost: {3}".format(self.action.name, join_list(self.literals), join_list(self.preconditions), join_list(self.postconditions))
 
 class ParseState:
     INITIAL=1
